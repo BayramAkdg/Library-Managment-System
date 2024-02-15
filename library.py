@@ -17,7 +17,7 @@ class Kütüphane:
 
     def kitapları_listele(self):
         try:
-            with open(self.dosya_adı, "r") as dosya:
+            with open(self.dosya_adı, "r") as dosya: # Dosyayı okuma modunda açar
                 kitaplar = dosya.readlines()
                 if not kitaplar:
                     self.etiket.config(text="Listelenecek Kitap Bulunamamıştır. Lütfen Kitap Ekleyin!")
@@ -43,7 +43,7 @@ class Kütüphane:
                     self.etiket.config(text="Bu kitap zaten kütüphanede bulunmaktadır.")
                     return
 
-        with open(self.dosya_adı, "a") as dosya:
+        with open(self.dosya_adı, "a") as dosya: # Dosyayı ekleme modunda açar
             dosya.write(f"{kitap_adı},{yazar},{yayın_tarihi},{sayfa_sayısı}\n")
         self.etiket.config(text="Kitap Başarılı bir şekilde eklendi.")
 
@@ -52,7 +52,7 @@ class Kütüphane:
         with open(self.dosya_adı, "r") as dosya:
             kitaplar = dosya.readlines()
 
-        with open(self.dosya_adı, "w") as dosya:
+        with open(self.dosya_adı, "w") as dosya: # Dosyayı yazma modunda açar
             kitap_silindi = False
             for kitap in kitaplar:
                 if not kitap.startswith(silinecek_kitap + ','): 
